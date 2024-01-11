@@ -22,7 +22,7 @@ if(localStorage.getItem("bestBrain")){
     }
 }
 
-const numCars = 30; // Adjust the number of cars as needed
+const numCars = 30; 
 const carWidth = 30;
 const carHeight = 50;
 const carSpeed = 2;
@@ -30,17 +30,17 @@ const carSpeed = 2;
 const traffic = [];
 
 for (let i = 0; i < numCars; i++) {
-    const laneIndex = i % 3; // 3 lanes available
-    const position = -200 * i; // Adjust the initial position as needed
+    const laneIndex = i % 3; 
+    const position = -200 * i;
     const color = getRandomColor();
 
     const car = new Car(road.getLaneCenter(laneIndex), position, carWidth, carHeight, "DUMMY", carSpeed, color);
     traffic.push(car);
 
-    // Add another car with the same position but different lane
+    
     let otherLaneIndex;
     do {
-        otherLaneIndex = Math.floor(Math.random() * 3); // Choose a different lane
+        otherLaneIndex = Math.floor(Math.random() * 3); 
     } while (otherLaneIndex === laneIndex);
 
     const otherCar = new Car(road.getLaneCenter(otherLaneIndex), position, carWidth, carHeight, "DUMMY", carSpeed, getRandomColor());
