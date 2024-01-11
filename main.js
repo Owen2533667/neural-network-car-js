@@ -8,6 +8,7 @@ const networkCtx = networkCanvas.getContext("2d");
 
 const road=new Road(carCanvas.width/2,carCanvas.width*0.9);
 
+
 const N=1;
 const cars=generateCars(N);
 let bestCar=cars[0];
@@ -16,48 +17,35 @@ if(localStorage.getItem("bestBrain")){
         cars[i].brain=JSON.parse(
             localStorage.getItem("bestBrain"));
         if(i!=0){
-            NeuralNetwork.mutate(cars[i].brain,0.02);
+            NeuralNetwork.mutate(cars[i].brain,0.01);
         }
     }
 }
 
-const traffic=[
-    new Car(road.getLaneCenter(1),-100,30,50,"DUMMY",2,getRandomColor()),
-    new Car(road.getLaneCenter(0),-300,30,50,"DUMMY",2,getRandomColor()),
-    new Car(road.getLaneCenter(2),-300,30,50,"DUMMY",2,getRandomColor()),
-    new Car(road.getLaneCenter(0),-500,30,50,"DUMMY",2,getRandomColor()),
-    new Car(road.getLaneCenter(1),-500,30,50,"DUMMY",2,getRandomColor()),
-    new Car(road.getLaneCenter(1),-700,30,50,"DUMMY",2,getRandomColor()),
-    new Car(road.getLaneCenter(2),-700,30,50,"DUMMY",2,getRandomColor()),
-    new Car(road.getLaneCenter(1), -900, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(0), -1100, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(2), -1100, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(0), -1300, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(1), -1300, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(1), -1500, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(2), -1500, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(0), -1700, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(1), -1700, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(2), -1900, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(0), -1900, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(1), -2100, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(1), -2100, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(2), -2300, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(0), -2500, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(1), -2500, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(2), -2700, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(0), -2700, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(1), -2900, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(1), -2900, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(2), -3100, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(0), -3300, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(1), -3300, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(2), -3500, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(0), -3500, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(1), -3700, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(1), -3700, 30, 50, "DUMMY", 2, getRandomColor()),
-    new Car(road.getLaneCenter(2), -3900, 30, 50, "DUMMY", 2, getRandomColor()),
-];
+const numCars = 30; // Adjust the number of cars as needed
+const carWidth = 30;
+const carHeight = 50;
+const carSpeed = 2;
+
+const traffic = [];
+
+for (let i = 0; i < numCars; i++) {
+    const laneIndex = i % 3; // 3 lanes available
+    const position = -200 * i; // Adjust the initial position as needed
+    const color = getRandomColor();
+
+    const car = new Car(road.getLaneCenter(laneIndex), position, carWidth, carHeight, "DUMMY", carSpeed, color);
+    traffic.push(car);
+
+    // Add another car with the same position but different lane
+    let otherLaneIndex;
+    do {
+        otherLaneIndex = Math.floor(Math.random() * 3); // Choose a different lane
+    } while (otherLaneIndex === laneIndex);
+
+    const otherCar = new Car(road.getLaneCenter(otherLaneIndex), position, carWidth, carHeight, "DUMMY", carSpeed, getRandomColor());
+    traffic.push(otherCar);
+}
 
 animate();
 
@@ -73,7 +61,7 @@ function discard(){
 function generateCars(N){
     const cars=[];
     for(let i=1;i<=N;i++){
-        cars.push(new Car(road.getLaneCenter(1),100,30,50,"AI"));
+        cars.push(new Car(road.getLaneCenter(1),100,30,50,"AI",4));
     }
     return cars;
 }
