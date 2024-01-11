@@ -13,11 +13,9 @@ class Controls{
                 this.forward=true;
                 break;
         }
-        
     }
 
     #addKeyboardListeners(){
-
         document.onkeydown=(event)=>{
             switch(event.key){
                 case "ArrowLeft":
@@ -34,7 +32,6 @@ class Controls{
                     break;
             }
         }
-
         document.onkeyup=(event)=>{
             switch(event.key){
                 case "ArrowLeft":

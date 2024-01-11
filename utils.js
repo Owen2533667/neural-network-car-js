@@ -1,4 +1,3 @@
-/*linear interpolation*/
 function lerp(A,B,t){
     return A+(B-A)*t;
 }
@@ -47,3 +46,10 @@ function getRGBA(value){
     const B=value>0?0:255;
     return "rgba("+R+","+G+","+B+","+alpha+")";
 }
+
+function getRandomColor(){
+    const hue=290+Math.random()*260;
+    return "hsl("+hue+", 100%, 60%)";
+}
+
+
