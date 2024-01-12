@@ -1,52 +1,62 @@
-class Controls{
-    constructor(type){
-        this.forward=false;
-        this.left=false;
-        this.right=false;
-        this.reverse=false;
+class Controls {
+    // Constructor for the Controls class
+    // Parameter: type - the type of controls ("KEYS", "DUMMY")
+    constructor(type) {
+        // Initialise control flags to false
+        this.forward = false;
+        this.left = false;
+        this.right = false;
+        this.reverse = false;
 
-        switch(type){
+        // Based on the specified control type, set up controls
+        switch (type) {
             case "KEYS":
+                // If control type is "KEYS", add keyboard event listeners
                 this.#addKeyboardListeners();
                 break;
             case "DUMMY":
-                this.forward=true;
+                // If control type is "DUMMY", set the forward control to true
+                this.forward = true;
                 break;
         }
     }
 
-    #addKeyboardListeners(){
-        document.onkeydown=(event)=>{
-            switch(event.key){
+    // Private method to add keyboard event listeners
+    #addKeyboardListeners() {
+        // Add keydown event listener to respond to key presses
+        document.onkeydown = (event) => {
+            switch (event.key) {
                 case "ArrowLeft":
-                    this.left=true;
+                    this.left = true;
                     break;
                 case "ArrowRight":
-                    this.right=true;
+                    this.right = true;
                     break;
                 case "ArrowUp":
-                    this.forward=true;
+                    this.forward = true;
                     break;
                 case "ArrowDown":
-                    this.reverse=true;
+                    this.reverse = true;
                     break;
             }
-        }
-        document.onkeyup=(event)=>{
-            switch(event.key){
+        };
+
+        // Add keyup event listener to respond to key releases
+        document.onkeyup = (event) => {
+            switch (event.key) {
                 case "ArrowLeft":
-                    this.left=false;
+                    this.left = false;
                     break;
                 case "ArrowRight":
-                    this.right=false;
+                    this.right = false;
                     break;
                 case "ArrowUp":
-                    this.forward=false;
+                    this.forward = false;
                     break;
                 case "ArrowDown":
-                    this.reverse=false;
+                    this.reverse = false;
                     break;
             }
-        }
+        };
     }
 }
