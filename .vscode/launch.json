@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Solution",
             "request": "launch",
+            "mainClass": "other.Solution",
+            "projectName": "Test1_320881dc"
+        },
+        {
+            "type": "java",
+            "name": "Solution",
+            "request": "launch",
             "mainClass": "Solution",
             "projectName": "Test1_320881dc"
         },

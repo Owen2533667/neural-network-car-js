@@ -1,22 +1,35 @@
 <!DOCTYPE html>
-<head>
-    <title>Self-driving car - No libraries</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <canvas id="carCanvas"></canvas>
-    <div id="verticalButtons">
-        <button onclick="save()">💾</button>
-        <button onclick="discard()">🗑️</button>
-    </div>
-    <canvas id="networkCanvas"></canvas>
-    <script src="visualizer.js"></script>
-    <script src="network.js"></script>
-    <script src="sensor.js"></script>
-    <script src="utils.js"></script>
-    <script src="road.js"></script>
-    <script src="controls.js"></script>
-    <script src="car.js"></script>
-    <script src="main.js"></script>
-</body>
+<html lang="en">
+    <head>
+        <title>Self-driving car - No libraries</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body> 
+        <canvas id="carCanvas"></canvas>
+        <div id="verticalButtons">
+            <div class="tooltip">
+                <button onclick="save()" title="Save">💾<span class="tooltiptext">Save the current best car brain</span></button>
+            </div>
+            <div class="tooltip">
+                <button onclick="discard()" title="Discard">🗑️<span class="tooltiptext">Discard best brain</span></button>
+            </div>
+            <div class="tooltip">
+                <button onclick="download()" title="Download"><img src="downloads.png" alt="Download current best"><span class="tooltiptext">Download current best brain</span></button>
+            </div>
+            <div class="tooltip">
+                <button onclick="best()" title="Best">🧠<span class="tooltiptext">Load best values</span></button>
+            </div>
+        </div>
+        <canvas id="networkCanvas"></canvas>
+        <script src="visualizer.js"></script>
+        <script src="network.js"></script>
+        <script src="sensor.js"></script>
+        <script src="utils.js"></script>
+        <script src="road.js"></script>
+        <script src="controls.js"></script>
+        <script src="car.js"></script>
+        <script src="main.js"></script>
+    </body>
 </html>

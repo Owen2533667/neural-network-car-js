@@ -8,6 +8,8 @@ class Solution {
     public static void main(String[] args) {
         int[] nums = {1,2,3,4,5,5};
 
+
+
         System.out.println(containsDuplicate(nums));
     }
 
@@ -22,6 +24,7 @@ class Solution {
         }
         return false;
     }
+
 
 }
 
